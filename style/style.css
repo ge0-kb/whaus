@@ -1,0 +1,86 @@
+
+.leftPad05em { padding-left:0.5em; }
+.bottomPad05em { padding-bottom:0.5em; }
+.topPad05em { padding-top:0.5em; }
+.topBottomPad1em { padding:1em 0em 1em 0em; }
+.bottomControl { padding-left:14.5em; }
+
+@font-face {
+    font-family: Lancelot;
+    src: url(./fonts/lancelot/Lancelot-Regular.ttf);
+}
+
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    background-image: url("../assets/background.png");
+    background-size: 15%;
+    background-repeat: repeat;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 20px 0 10px;
+}
+
+p {
+    font-family: Lancelot;
+    font-size: large;
+}
+
+.menu {
+    gap: 30px;
+    margin-bottom: 30px;
+    background-color: #000000;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ec7c7c;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.left {
+    float: left;
+    margin-right: 1em;
+}
+.center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+@media only screen and (min-width: 600px) {
+    .small {
+        max-width: 60%;
+        height: auto;
+    }
+}
+.caption {
+    margin-top: 0;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+#container {
+    margin: 2em auto;
+    width: 60%;
+	max-width: 1080px;
+	background-color: #ff0000;
+    outline-color: #000000;
+    outline-style: solid;
+    outline-width: 6px;
+    outline-offset: 0;
+    text-align: center;
+}
