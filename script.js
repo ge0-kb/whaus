@@ -411,3 +411,26 @@ if (document.getElementById("postTags")) {
 if (document.title === "Blog Post") {
   document.title = currentPostTitle;
 }
+
+// email subscription
+if (document.getElementById("subscribe")) {
+  document.getElementById("subscribe").innerHTML = `
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/chaus"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/chaus', 'popupwindow')"
+      class="embeddable-buttondown-form"
+    >
+      <label for="bd-email">email</label>
+      <input
+        type="email"
+        name="email"
+        id="bd-email"
+        placeholder="you@example.com"
+        required
+      />
+      <input type="submit" value="subscribe" />
+    </form>
+  `
+}

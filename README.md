@@ -20,6 +20,10 @@ main thing that requires some nuance is the blogging feature, which is based on 
 
 # credits
 
+email subscription powered by Buttondown
+
+***
+
 blogging functionality from Zonelets
 for more information visit https://zonelets.net/
 
