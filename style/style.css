@@ -78,8 +78,8 @@ img {
 #container {
     margin: 2em auto;
     width: 60%;
-	max-width: 1080px;
-	background-color: #ff0000;
+	max-width: 700px;
+	background-color: #cb2c2c;
     outline-color: #000000;
     outline-style: solid;
     outline-width: 6px;
@@ -146,4 +146,70 @@ a:link, a:visited {
 .moreposts {
   font-size: 0.8em;
   margin-top: 0.2em;
+}
+
+#cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+#cal-header button {
+  background: none;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+}
+
+#cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-dow {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.25rem;
+}
+
+.cal-day {
+  min-height: 80px;
+  border: 1px solid #ddd;
+  padding: 4px;
+  vertical-align: top;
+}
+
+.cal-day.empty {
+  background: #f9f9f9;
+  border: none;
+}
+
+.cal-day.today {
+  background: #fff8e1;
+  border-color: #f0a500;
+}
+
+.cal-date {
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+}
+
+.cal-event {
+  display: block;
+  font-size: 0.75rem;
+  color: #1a73e8;
+  text-decoration: none;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-event:hover {
+  text-decoration: underline;
 }

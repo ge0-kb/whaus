@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>coffeecalendar</title>
-    <!-- The description is not directly visible on the page. But it can show up in certain places like search engines. Probably unnecessary for most pages in your blog. -->
-    <meta name="description" content="">
-    <!-- This specifies the favicon (little icon on the browser tab) -->
-    <link rel="icon" href="./assets/favicon.png" type="image/x-icon"/>
-    <!-- This helps our site look consistent across devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8"> 
-    <!-- Here's the link to our CSS stylesheet! -->
-    <link href="./style/style.css" rel="stylesheet" type="text/css" media="all">    
-  </head>
-  <body>
-    <div id="container">
-    <div id="header">This site requires JavaScript!</div>
+<head>
+  <title>coffeecalendar</title>
+  <meta name="description" content="">
+  <link rel="icon" href="./assets/favicon.png" type="image/x-icon"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"> 
+  <link href="./style/style.css" rel="stylesheet" type="text/css" media="all">    
+</head>
+<body>
+  <div id="container">
+    <div id="header">coffeecalendar</div>
     <div id="content">    
-      
       <h1>events and stuff</h1>
-      
-    </div> <!-- end of div id="content" -->
+      <iframe src="https://calendar.google.com/calendar/embed?src=237483b70f05f3ca49dd44b86cc97bc9801b7a3115f4d87fbd7ddaf03ffd2902%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0; width: 90%; aspect-ratio: 2/ 1"  frameborder="0"  scrolling="no"></iframe>
+      <!-- <div id="calendar"></div>  -->
+    </div>
     <div id="footer"></div>
-    </div> <!-- end of div id="container" -->    
-  <!-- Here's the link to our JavaScript! -->
+  </div>
+
   <script src="./script.js"></script>
-  </body>
+  <!-- <script src="calendar.js"></script>   -->
+</body>
 </html>
