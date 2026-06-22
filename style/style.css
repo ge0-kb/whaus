@@ -1,4 +1,3 @@
-
 .leftPad05em { padding-left:0.5em; }
 .bottomPad05em { padding-bottom:0.5em; }
 .topPad05em { padding-top:0.5em; }
@@ -77,9 +76,9 @@ img {
 
 #container {
     margin: 2em auto;
-    width: 60%;
-	max-width: 700px;
-	background-color: #cb2c2c;
+    width: 90%;
+    max-width: 700px;
+    background-color: #cb2c2c;
     outline-color: #000000;
     outline-style: solid;
     outline-width: 6px;
@@ -212,4 +211,55 @@ a:link, a:visited {
 
 .cal-event:hover {
   text-decoration: underline;
+}
+
+/* MOBILE STYLES */
+@media only screen and (max-width: 600px) {
+    #container {
+        width: 95%;
+        margin: 0.5em auto;
+    }
+
+    img {
+        width: 100% !important;
+    }
+
+    .small {
+        max-width: 100%;
+    }
+
+    /* Calendar: shrink cells and text to fit 7 columns */
+    .cal-day {
+        min-height: 50px;
+        padding: 2px;
+    }
+
+    .cal-date {
+        font-size: 0.7rem;
+    }
+
+    .cal-event {
+        font-size: 0.6rem;
+    }
+
+    .cal-dow {
+        font-size: 0.7rem;
+        padding: 0.1rem;
+    }
+
+    #cal-header {
+        font-size: 0.95rem;
+        padding: 0.25rem;
+    }
+
+    #cal-header button {
+        padding: 0.15rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* Make calendar scrollable horizontally if still too tight */
+    #cal-grid {
+        overflow-x: auto;
+        gap: 2px;
+    }
 }
