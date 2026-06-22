@@ -30,16 +30,40 @@ let authorLink = ""; // Enter your website, social media, etc. Some way for peop
 /*UPDATE: as of version 1.3, you may omit the date if you would like. But if you
   use a date it must still follow that format.*/
 
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// recent posts go atop this array
+
 let postsArray = [
-//[ "posts/2020-11-10-Special-Characters-Example.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ) ],
-//[ "posts/2020-11-10-My-Third-Post-Example.html" ],
-//["posts/2020-11-10-HTML-cheat-sheet.html", "", "album review"],
-//["posts/2025-12-30-Amazing-Wonderful.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ), "life", "bugs", "other tags that exist"],
-    ["bulletin/2026-06-22-bugs4life.html", "", "bugs"],
-    ["bulletin/2026-02-04-wednesday-summer.html", ""]
+  //["bulletin/2020-11-10-HTML-cheat-sheet.html", "", "album review", "another tag"],
+  //["bulletin/2025-12-30-Example-Post-with-custom-title.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ), "life", "bugs", "other tags that exist"],
+    ["bulletin/2026-06-22-bugs4life.html", "Bugs are beautiful", "bugs"],
+    ["bulletin/2026-02-04-wednesday-summer.html", ""],
+    // this one^ has no custom title specified, so the fallback script will set it to "wednesday summer"
+    ["bulletin/2026-01-01-template.html", "Template post"],
   ];
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 //==[ 3. GENERATING THE HTML SECTIONS TO BE INSERTED ]==
 
@@ -115,6 +139,24 @@ function formatPostTitle(i) {
   }
 }
 
+function formatPostTitle(i) {
+  // first choice (most comprehensive, write to postsArray[i][1] above):
+  // used when special character encoding is needed. allows custom post name to appear in tag list/recent post list
+  if (postsArray[i][1] != "") {
+    return decodeURI(postsArray[i][1]);
+  }
+
+  // second choice (easiest as it's on the .html itself, but cannot update post name when listed in recent/tagged):
+  // the current page's existing <title>, if it is not "Blog Post".
+  if (document.title !== "Blog Post" && document.title !== "") {
+    return document.title;
+  }
+
+  // third choice (fallback/default):
+  // derive title from filename
+  return getTitleString(postsArray[i][0]);
+}
+
 //Get the current post title and date (if we are on a post page)
 let currentPostTitle = "";
 let niceDate = "";
@@ -142,14 +184,19 @@ if ( currentIndex > -1 ) {
 
     niceDate = day + " " + month + " " + year; //this used to need slice()
   }
-  //tag creation FOR PER PAGE TAG LIST
+  //tag creation FOR TAG LIST THAT APPEARS PER PAGE NEAR TOP
   //console.log("about to create tag list");
   for (i = 2; i < postsArray[currentIndex].length; i++) {
     console.log(postsArray[currentIndex][i]);
     postTagsHTML += '<a href="/tags/' + postsArray[currentIndex][i].replaceAll(' ', '') + '.html">' + postsArray[currentIndex][i] + '</a>, ';
   }
-  postTagsHTML = postTagsHTML.slice(0, -2);
-  postTagsHTML += '<hl></hl>';
+  // handles posts with no tags
+  if (postsArray[currentIndex].length > 2) {
+    postTagsHTML = postTagsHTML.slice(0, -2); // final comma chop
+  } else {
+    postTagsHTML += "none"
+  }
+  postTagsHTML += '<hr>';
 }
 
 //Generate the Post List HTML, which will be shown on the "bulletin" page.
@@ -238,7 +285,7 @@ function getTaggedPosts (pageTitle) {
   taggedPostListHTML += pageTitle.toLowerCase();
   taggedPostListHTML += '</h1> <ul>';
 	for ( let i = 0; i < taggedPostArray.length; i++ ) {
-  		taggedPostListHTML += '<li>' + formatPostLink(i,taggedPostArray) + '</li>';
+  		taggedPostListHTML += formatPostLink(i,taggedPostArray);
 	}
 	taggedPostListHTML += '</ul>';
 	return taggedPostListHTML;
@@ -329,7 +376,7 @@ if (document.getElementById("header")) {
   document.getElementById("header").innerHTML = headerHTML;
 }
 if (document.getElementById("blogTitleH1")) {
-  document.getElementById("blogTitleH1").innerHTML = blogTitle;
+  document.getElementById("blogTitleH1").innerHTML = blogName;
 }
 if (document.getElementById("postTitleH1")) {
   document.getElementById("postTitleH1").innerHTML = currentPostTitle;
@@ -342,7 +389,7 @@ if (document.getElementById("footer")) {
 }
 
 //the below three items are additional for the tagging system:
-//generates a list of all posts tagged with the page title - ideal for use on individual tag pages like https://3legged.neocities.org/journal/tags/coding
+//generates a list of all posts tagged with a certain tag (= the page title.html) - ideal for use on individual tag pages like https://3legged.neocities.org/journal/tags/coding
 //HTML to put on your page: <div id="taggedPosts"></div>
 if (document.getElementById("taggedPosts")) {
   document.getElementById("taggedPosts").innerHTML = getTaggedPosts(document.title);

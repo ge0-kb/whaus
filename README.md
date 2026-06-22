@@ -1,5 +1,22 @@
 hi! welcome to the website for duke coffeehouse.
-built with love scratch with love.
+built with love.
+
+# how to use?
+
+main thing that requires some nuance is the blogging feature, which is based on Zonelets. here's how you tack a little something to the bulletin board:
+
+1. Make a new .html for your post in `bulletin/`. A good idea is to duplicate template.html.
+2. Rename it, changing the date and title without removing any hyphens. YYYY-MM-DD format!
+3. Write your heart out.
+4. Add the file path to the top of the conspicious `postsArray` in script.js.
+  a. `["filepath", "<custom title>", "<tag1>", "<tag2>", ...],` is the format of a line
+  b. If custom title is specified here, it will overwrite the `<title>"Blog Post"</title>` in the .html, and appear in 3 places:
+    1. The title in the browser
+    2. The H1 title on the blog post itself
+    3. In lists that list posts (recent posts, all posts, posts with certain tag) `2026-01-01 » ...`
+  c. If custom title is instead changed in `<title>"Blog Post"</title>` itself, it will only appear in the first 2 places above.
+  d. If custom title is not specified at all, it will be generated from the filename past the third hyphen, i.e. with the date removed.
+5. Done!
 
 # credits
 

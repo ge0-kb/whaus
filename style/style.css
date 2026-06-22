@@ -27,7 +27,8 @@ h1, h2, h3, h4, h5 {
 }
 
 p {
-    font-family: Lancelot;
+    /* font-family: Lancelot; */
+    font-family: serif;
     font-size: large;
 }
 
