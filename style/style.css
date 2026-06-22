@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: Lancelot;
-    src: url(./fonts/lancelot/Lancelot-Regular.ttf);
+    src: url(lancelot/Lancelot-Regular.ttf);
 }
 
 body {
@@ -23,10 +23,12 @@ body {
 
 h1, h2, h3, h4, h5 {
     margin: 20px 0 10px;
+    letter-spacing: -2px;
 }
 
 p {
-    font-family: Lancelot;
+    /* font-family: Lancelot; */
+    font-family: serif;
     font-size: large;
 }
 
@@ -83,4 +85,65 @@ img {
     outline-width: 6px;
     outline-offset: 0;
     text-align: center;
+}
+
+/* HEADER STYLE */
+#header ul {
+  list-style-type: none;
+  padding: 0 0;
+  margin: 0;
+}
+#header li {
+  font-size: 1.5em;
+  letter-spacing: -4px;
+  display: inline-block;
+  margin-right: 0.3em;
+  /*margin-bottom: 0.2em;
+  margin-top: 0.2em;*/
+}
+#header li a {
+  color: #000000;
+  text-decoration: none;
+  background-color: inherit;
+}
+#header li a:hover {
+  text-decoration: underline;
+}
+
+/* LINK STYLE */
+a:hover { 
+  background-color: #626252;
+}
+
+a:link, a:visited {
+  color: #202b3f;
+}
+
+/* POST LIST STYLE */
+#postlistdiv ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+
+#taggedPosts ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+
+#tagList ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+
+#recentpostlistdiv ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+.moreposts {
+  font-size: 0.8em;
+  margin-top: 0.2em;
 }
