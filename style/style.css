@@ -86,6 +86,12 @@ img {
     text-align: center;
 }
 
+#content ul {
+  padding: 0 0;
+  margin: 0;
+  font-weight: bold;
+}
+
 /* HEADER STYLE */
 #header ul {
   list-style-type: none;
