@@ -220,12 +220,34 @@ a:link, a:visited {
 /* MOBILE STYLES */
 @media only screen and (max-width: 600px) {
     #container {
-        width: 95%;
-        margin: 0.5em auto;
+        width: 92%;
+        margin: 1em auto;
+    }
+
+    #content {
+        padding: 0 0.8em;
+        box-sizing: border-box;
+    }
+
+    #header ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 0.3em;
+    }
+
+    #header li {
+        font-size: 1.15em;
+        letter-spacing: -2px;
     }
 
     img {
         width: 100% !important;
+    }
+
+    #content iframe {
+        width: 100% !important;
+        aspect-ratio: 4 / 3 !important;
     }
 
     .small {
