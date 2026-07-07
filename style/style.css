@@ -22,7 +22,7 @@ body {
 
 h1, h2, h3, h4, h5 {
     margin: 20px 0 10px;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
 }
 
 p {
@@ -78,7 +78,7 @@ img {
     margin: 2em auto;
     width: 90%;
     max-width: 700px;
-    background-color: #B8081D;
+    background-color: #E47878;
     outline-color: #000000;
     outline-style: solid;
     outline-width: 6px;
@@ -145,6 +145,10 @@ a:link, a:visited {
 .moreposts {
   font-size: 0.8em;
   margin-top: 0.2em;
+}
+
+#postTags, #nextprev {
+  font-weight: bold;
 }
 
 #cal-header {
