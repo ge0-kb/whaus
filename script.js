@@ -105,13 +105,13 @@ if ( url.includes("bulletin/") || url.includes("tags/") ) {
 }
 
 //Generate the Header HTML, a series of list items containing links.
-let headerHTML = '<ul> <li><a href="' + relativePath + '/index.html">home</a></li>' +
-'<li> ¤ </li>' +
+let headerHTML = '<nav aria-label="Main"><ul> <li><a href="' + relativePath + '/index.html">home</a></li>' +
+'<li aria-hidden="true"> ¤ </li>' +
 '<li><a href="' + relativePath + '/about.html">about</a></li>' +
-'<li> ¤ </li>' +
+'<li aria-hidden="true"> ¤ </li>' +
 '<li><a href="' + relativePath + '/bulletin.html">bulletin</a></li>' +
-'<li> ¤ </li>' +
-'<li><a href="' + relativePath + '/calendar.html">calendar</a></li> </ul>';
+'<li aria-hidden="true"> ¤ </li>' +
+'<li><a href="' + relativePath + '/calendar.html">calendar</a></li> </ul></nav>';
 
 //Generate the Footer HTML, which uses the variables defined in the BASIC INFO section above to list info about the site.
 //Note: feel free to remove the references to Zonelets and Neocities! Just be careful not to delete any necessary HTML closing tags or other syntax.
@@ -176,20 +176,20 @@ if ( currentIndex > -1 ) {
     const [year, monthSlice, day] = dateString.split("-");
 
     let month = "";
-    if (monthSlice === "01") { month = "jan"; }
-    else if (monthSlice === "02") { month = "feb"; }
-    else if (monthSlice === "03") { month = "mar"; }
-    else if (monthSlice === "04") { month = "apr"; }
-    else if (monthSlice === "05") { month = "may"; }
-    else if (monthSlice === "06") { month = "jun"; }
-    else if (monthSlice === "07") { month = "jul"; }
-    else if (monthSlice === "08") { month = "aug"; }
-    else if (monthSlice === "09") { month = "sep"; }
-    else if (monthSlice === "10") { month = "oct"; }
-    else if (monthSlice === "11") { month = "nov"; }
-    else if (monthSlice === "12") { month = "dec"; }
+         if (monthSlice === "01") { month = "Jan"; }
+    else if (monthSlice === "02") { month = "Feb"; }
+    else if (monthSlice === "03") { month = "Mar"; }
+    else if (monthSlice === "04") { month = "Apr"; }
+    else if (monthSlice === "05") { month = "May"; }
+    else if (monthSlice === "06") { month = "Jun"; }
+    else if (monthSlice === "07") { month = "Jul"; }
+    else if (monthSlice === "08") { month = "Aug"; }
+    else if (monthSlice === "09") { month = "Sep"; }
+    else if (monthSlice === "10") { month = "Oct"; }
+    else if (monthSlice === "11") { month = "Nov"; }
+    else if (monthSlice === "12") { month = "Dec"; }
 
-    niceDate = day + " " + month + " " + year; //this used to need slice()
+    niceDate = '<span aria-hidden="true">&gt;&gt; </span>' + day + " " + month + " " + year + '<span aria-hidden="true"> &lt;&lt;</span>';
   }
   //tag creation FOR TAG LIST THAT APPEARS PER PAGE NEAR TOP
   //console.log("about to create tag list");
@@ -353,7 +353,7 @@ function getTagListCount() {
 
 
 //new function to turn tag array into list of links
-//FOR MAIN PAGE LISTING ALL EXTANT TAGS
+//FOR MAIN /tags PAGE LISTING ALL EXTANT TAGS
 function formatTagList (tagcountArrays) {
 	let tagListHTML = '<ul>';
 	for (i = 0; i < tagcountArrays[0].length; i++) {
