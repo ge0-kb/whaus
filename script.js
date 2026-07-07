@@ -43,14 +43,21 @@ let authorLink = ""; // Enter your website, social media, etc. Some way for peop
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // recent posts go atop this array
+// current extant tags (indices 2+ of a post MUST ONLY consist of the following strings):
+//      "event"
+//      "news"
+//      "opinion"
+//      "retrospective"
+//      "review"
 
 let postsArray = [
-  //["bulletin/2020-11-10-HTML-cheat-sheet.html", "", "album review", "another tag"],
-  //["bulletin/2025-12-30-Example-Post-with-custom-title.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ), "life", "bugs", "other tags that exist"],
-    ["bulletin/2026-06-22-bugs4life.html", "Bugs are beautiful", "bugs"],
-    ["bulletin/2026-02-04-wednesday-summer.html", ""],
+    // ["bulletin/2020-11-10-HTML-cheat-sheet.html", "", "album review", "another tag"],
+    // ["bulletin/2025-12-30-Example-Post-with-custom-title.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ), "life", "bugs", "other tags that exist"],
+    // ["bulletin/2026-06-22-bugs4life.html", "Bugs are beautiful", "bugs"],
+    // ["bulletin/2026-02-04-wednesday-summer.html", ""],
     // this one^ has no custom title specified, so the fallback script will set it to "wednesday summer"
-    ["bulletin/2026-01-01-template.html", "Template post"],
+    // ["bulletin/2026-01-01-template.html", "Template post"],
+    ["bulletin/2026-07-06-you-found-us.html", "", "event", "news", "opinion", "retrospective", "review"]
   ];
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -350,7 +357,7 @@ function getTagListCount() {
 function formatTagList (tagcountArrays) {
 	let tagListHTML = '<ul>';
 	for (i = 0; i < tagcountArrays[0].length; i++) {
-  		tagListHTML += '<li><a href="/tags/' + tagcountArrays[0][i].replaceAll(' ', '') + '.html">' + tagcountArrays[0][i] + '</a> (' + tagcountArrays[1][i] + ')</li>';
+  	tagListHTML += '<li><a href="/tags/' + tagcountArrays[0][i].replaceAll(' ', '') + '.html">' + tagcountArrays[0][i] + '</a> (' + tagcountArrays[1][i] + ')</li>';
 	}
 	tagListHTML += "</ul>";
 	return tagListHTML;
