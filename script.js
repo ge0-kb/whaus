@@ -111,6 +111,8 @@ let headerHTML = '<nav aria-label="Main"><ul> <li><a href="' + relativePath + '/
 '<li aria-hidden="true"> ¤ </li>' +
 '<li><a href="' + relativePath + '/bulletin.html">bulletin</a></li>' +
 '<li aria-hidden="true"> ¤ </li>' +
+'<li><a href="' + relativePath + '/archive.html">archive</a></li>' +
+'<li aria-hidden="true"> ¤ </li>' +
 '<li><a href="' + relativePath + '/calendar.html">calendar</a></li> </ul></nav>';
 
 //Generate the Footer HTML, which uses the variables defined in the BASIC INFO section above to list info about the site.
